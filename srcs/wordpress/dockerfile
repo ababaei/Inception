@@ -8,7 +8,10 @@ RUN mkdir /var/www/html
 RUN chmod -R 755 /var/www/html
 
 COPY wp-config.php /var/www/localhost/wordpress/wp-config.php
+COPY www.conf /var/www/html
+
+ENTRYPOINT ["init. sh"]
 
 EXPOSE 9000
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["php-fpm", "-F"]
