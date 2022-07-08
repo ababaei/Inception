@@ -11,13 +11,17 @@ else
 	if ![ -d /var/www/html]
 	then
 		mkdir /var/www/html
+	fi
 	cd /var/www/html
 
-	wp core download # Download wordpress (gaffe à être dans le bon dossier les enfants)
-	wp config create --dbname=<db_name> --dbuser=<db_user> --dbpass=<db_pass> --dbhost=<mariadb_host> --dbcharset="utf8" --dbcollate="utf8_general_ci" # Configure la DB
-	wp core install --url=<login.42.fr>/wordpress --title=<titre_site> --admin_user=<admin_username> --admin_password=<admin_pass> --admin_email=<admin_mail> --skip-email #Configure le site et l'admin
-	wp user create <wp_user> <wp_mail> --role=author --user_pass=<wp_user_pass>
-	wp theme install <theme_name> --activate
-fi
+	wp --allow-root core download
+	wp --allow-root config create --dbname=wpdb --dbuser=toto --dbpass=toto --dbhost=wp --dbcharset="utf8" --dbcollate="utf8_general_ci"
+	wp --allow-root core install --url=ababaei.42.fr/wordpress --title=ababaei --admin_user=admin --admin_password=admin --admin_email=admin --skip-email
+	wp --allow-root user create user user --role=author --user_pass=user
+	wp --allow-root theme install twentyseventeen --activate
 
-exec "$@"
+	#wp --allow-root config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=$MYSQL_HOSTNAME --dbcharset="utf8" --dbcollate="utf8_general_ci"
+	#wp --allow-root core install --url=ababaei.42.fr/wordpress --title=ababaei --admin_user=$WP_ADMIN --admin_password=$WP_ADPASS --admin_email=$WP_MAIL --skip-email
+	#wp --allow-root user create $WP_USER $WP_USERMAIL --role=author --user_pass=$WP_USERPASS
+	#wp --allow-root theme install twentyseventeen --activate
+fi

@@ -4,14 +4,14 @@ RUN	apt-get update && apt-get -y install \
 	php-fpm php php-cgi php-mysqli php-pear php-mbstring php-gettext libapache2-mod-php php-common php-phpseclib php-mysql \
 	curl
 
-RUN mkdir /var/www/html
+#RUN mkdir /var/www/html
 RUN chmod -R 755 /var/www/html
 
-COPY wp-config.php /var/www/localhost/wordpress/wp-config.php
 COPY www.conf /var/www/html
 
-ENTRYPOINT ["init. sh"]
+copy init.sh /usr/local/bin
+ENTRYPOINT ["init.sh"]
 
 EXPOSE 9000
 
-CMD ["php-fpm", "-F"]
+CMD ["/usr/sbin/php-fpm7.3", "-F"]
