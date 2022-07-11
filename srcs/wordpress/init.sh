@@ -8,18 +8,13 @@ else
 	chmod +x wp-cli.phar
 	mv wp-cli.phar /usr/local/bin/wp
 
-	if [ !-d /var/www/html]
+	if [[ ! -d /var/www/html ]];
 	then
 		mkdir /var/www/html
 	fi
 	cd /var/www/html
 
 	wp --allow-root core download
-
-#	wp --allow-root config create --dbname=wpdb --dbuser=toto --dbpass=toto --dbhost=wp --dbcharset="utf8" --dbcollate="utf8_general_ci"
-#	wp --allow-root core install --url=ababaei.42.fr/wordpress --title=ababaei --admin_user=admin --admin_password=admin --admin_email=admin --skip-email
-#	wp --allow-root user create user user --role=author --user_pass=user
-#	wp --allow-root theme install twentyseventeen --activate
 
 	wp --allow-root config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=$MYSQL_HOSTNAME --dbcharset="utf8" --dbcollate="utf8_general_ci"
 	wp --allow-root core install --url=ababaei.42.fr/wordpress --title=ababaei --admin_user=$WP_ADMIN --admin_password=$WP_ADPASS --admin_email=$WP_MAIL --skip-email
