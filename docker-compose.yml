@@ -1,1 +1,64 @@
-.
+  version: "3.3"
+    
+  services:
+    mariadb:
+      build: ./srcs/mariadb/
+      container_name: mariadb
+      ports:
+        - "3306:3306"
+      networks:
+        - backend
+      env_file:
+        - srcs/var.env
+      volumes:
+        - db-data:/var/lib/mysql
+      restart: on-failure
+
+    nginx:
+      build: ./srcs/nginx/
+      container_name: nginx
+      ports:
+        - "443:443"
+      networks:
+        - frontend
+      env_file:
+        - srcs/var.env
+      volumes:
+        - wp-data:/var/www/html
+      depends_on:
+        - wordpress
+      restart: on-failure
+    
+    wordpress:
+      build: ./srcs/wordpress/
+      container_name: wordpress
+      ports:
+        - "9000:9000"
+      networks:
+        - frontend
+        - backend
+      env_file:
+        - srcs/var.env
+      volumes:
+        - wp-data:/var/www/html
+      depends_on:
+        - mariadb
+      restart: on-failure
+
+  volumes:
+    db-data:
+      driver: local
+      driver_opts:
+        type: none
+        device: /home/ababaei/data/db_data
+        o: bind
+    wp-data:
+      driver: local
+      driver_opts:
+        type: none
+        device: /home/ababaei/data/wp_data
+        o: bind
+
+  networks:
+    frontend:
+    backend:

@@ -9,4 +9,4 @@ COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 EXPOSE 3306
 
-CMD ["bash" "/root/script.sh"]
+CMD ["bash" "/root/db_script.sh"]
