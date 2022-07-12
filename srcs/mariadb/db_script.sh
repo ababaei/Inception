@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ ! -f /var/lib/mysql/conf_done ]
 then
 	myslqd
