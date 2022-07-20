@@ -1,16 +1,17 @@
 FROM debian:buster
 
 RUN	apt-get update && apt-get -y install \
-	php-fpm php php-cgi php-mysqli php-pear php-mbstring php-gettext libapache2-mod-php php-common php-phpseclib php-mysql \
-	curl
+	php7.3 php7.3-fpm php7.3-mysql \
+	curl \
+	mariadb-client
 
+RUN mkdir -p /var/www/html
 RUN chmod -R 755 /var/www/html
 
 COPY www.conf /var/www/html
-
-copy init.sh /usr/local/bin
-ENTRYPOINT ["init.sh"]
+COPY init.sh /root/init.sh
 
 EXPOSE 9000
 
-CMD ["/usr/sbin/php-fpm7.3", "-F"]
+#CMD [ "bash", "/root/init.sh" ]
+CMD [ "php7.3-fpm", "F" ]

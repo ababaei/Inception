@@ -12,7 +12,7 @@
         - srcs/var.env
       volumes:
         - db-data:/var/lib/mysql
-      restart: "no"
+      restart: on-failure
 
     nginx:
       build: ./srcs/nginx/

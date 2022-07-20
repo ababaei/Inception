@@ -2,7 +2,7 @@
 
 if [ ! -f /var/lib/mysql/conf_done ]
 then
-	myslqd
+	mysqld
 	
 	mysql -u root -e "CREATE DATABASE $MYSQL_DATABASE"
 
@@ -14,6 +14,8 @@ then
 
 	mysql -u root -e "FLUSH PRIVILEGES;"
 	touch /var/lib/mysql/conf_done
+
+	killall mysqld
 fi
 
-myslqd
+mysqld
