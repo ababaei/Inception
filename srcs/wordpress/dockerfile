@@ -8,10 +8,12 @@ RUN	apt-get update && apt-get -y install \
 RUN mkdir -p /var/www/html
 RUN chmod -R 755 /var/www/html
 
-COPY www.conf /var/www/html
+RUN mkdir -p /run/php
+RUN chmod -R 755 /run/php
+
+COPY www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY init.sh /root/init.sh
 
 EXPOSE 9000
 
-#CMD [ "bash", "/root/init.sh" ]
-CMD [ "php7.3-fpm", "F" ]
+CMD [ "bash", "/root/init.sh" ]

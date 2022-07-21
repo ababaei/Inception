@@ -24,4 +24,5 @@ else
 	echo "INSTALL DONE !!!!!!!!!!!!!!"
 fi
 
-php7.3-fpm -F -R
+php-fpm7.3 -F -R
+#tail -f /dev/null

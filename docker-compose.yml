@@ -5,7 +5,7 @@
       build: ./srcs/mariadb/
       container_name: mariadb
       ports:
-        - "3306:3306"
+        - "127.0.0.1:3306:3306"
       networks:
         - backend
       env_file:
@@ -18,7 +18,7 @@
       build: ./srcs/nginx/
       container_name: nginx
       ports:
-        - "443:443"
+        - "127.0.0.1:443:443"
       networks:
         - frontend
       env_file:
@@ -33,7 +33,7 @@
       build: ./srcs/wordpress/
       container_name: wordpress
       ports:
-        - "9000:9000"
+        - "127.0.0.1:9000:9000"
       networks:
         - frontend
         - backend
