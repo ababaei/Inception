@@ -18,9 +18,9 @@
       build: ./srcs/nginx/
       container_name: nginx
       ports:
-        - "127.0.0.1:443:443"
+        - "443:443"
       networks:
-        - frontend
+        - backend
       env_file:
         - srcs/var.env
       volumes:
@@ -35,7 +35,6 @@
       ports:
         - "127.0.0.1:9000:9000"
       networks:
-        - frontend
         - backend
       env_file:
         - srcs/var.env
@@ -60,5 +59,4 @@
         o: bind
 
   networks:
-    frontend:
     backend:

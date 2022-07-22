@@ -10,6 +10,9 @@ down:
 	docker-compose down --volumes
 
 rmvol:
-	sudo rm -rf /home/ababaei/data/db-data/*
-	sudo rm -rf /home/ababaei/data/wp-data/*
 
+clean: down
+	docker container prune	
+
+fclean: clean
+	docker system prune -a
