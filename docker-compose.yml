@@ -11,7 +11,7 @@
       env_file:
         - srcs/var.env
       volumes:
-        - db-data:/var/lib/mysql
+        - db_data:/var/lib/mysql
       restart: on-failure
 
     nginx:
@@ -24,7 +24,7 @@
       env_file:
         - srcs/var.env
       volumes:
-        - wp-data:/var/www/html
+        - wp_data:/var/www/html
       depends_on:
         - wordpress
       restart: on-failure
@@ -39,19 +39,19 @@
       env_file:
         - srcs/var.env
       volumes:
-        - wp-data:/var/www/html
+        - wp_data:/var/www/html
       depends_on:
         - mariadb
       restart: on-failure
 
   volumes:
-    db-data:
+    db_data:
       driver: local
       driver_opts:
         type: none
         device: /home/ababaei/data/db_data
         o: bind
-    wp-data:
+    wp_data:
       driver: local
       driver_opts:
         type: none
