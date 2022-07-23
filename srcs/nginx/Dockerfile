@@ -2,8 +2,7 @@ FROM debian:buster
 
 RUN	apt-get update && apt-get -y install \
 	nginx \
-	openssl \
-	mariadb-client mariadb-server
+	openssl
 
 RUN mkdir /etc/nginx/ssl_cert
 RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -keyout /etc/nginx/ssl_cert/localhost.key -out /etc/nginx/ssl_cert/localhost.crt -subj "/C=FR"
