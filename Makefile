@@ -1,14 +1,16 @@
-FILE = docker-compose.yml
+FILE = srcs/docker-compose.yml
+WP_DATA = /home/ababaei/data/wp_data/
+DB_DATA = /home/ababaei/data/db_data/
 
 all: build
-	sudo mkdir -p /home/ababaei/data/wp_data/
-	sudo mkdir -p /home/ababaei/data/db_data/
+	sudo mkdir -p $(WP_DATA)
+	sudo mkdir -p $(DB_DATA)
 
 build:
-	docker-compose -f docker-compose.yml build
+	docker-compose -f $(FILE) build
 
 up:
-	docker-compose -f docker-compose.yml up -d
+	docker-compose -f $(FILE) up -d
 
 down:
 	docker-compose down --volumes
@@ -19,8 +21,8 @@ clean: down
 	docker container prune	
 
 fclean: clean
-	sudo rm -rf /home/ababaei/data/wp_data/
-	sudo rm -rf /home/ababaei/data/db_data/
+	sudo rm -rf $(WP_DATA)
+	sudo rm -rf $(DB_DATA)
 	docker system prune -a
 
 .PHONY: all build up down clean fclean

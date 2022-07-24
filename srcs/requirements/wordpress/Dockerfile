@@ -11,8 +11,8 @@ RUN chmod -R 766 /var/www/html
 RUN mkdir -p /run/php
 RUN chmod -R 766 /run/php
 
-COPY www.conf /etc/php/7.3/fpm/pool.d/www.conf
-COPY init.sh /root/init.sh
+COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+COPY ./tools/init.sh /root/init.sh
 
 EXPOSE 9000
 
