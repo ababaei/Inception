@@ -9,6 +9,4 @@ EXPOSE 443
 
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
-#RUN nginx -t #let you know if your config file is ok
-
 CMD ["nginx", "-g", "daemon off;"]

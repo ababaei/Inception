@@ -13,7 +13,7 @@ up:
 	docker-compose -f $(FILE) up -d
 
 down:
-	docker-compose down --volumes
+	docker-compose -f $(FILE) down --volumes
 
 rmvol:
 
